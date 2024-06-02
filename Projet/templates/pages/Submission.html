@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/submission.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="myProjects/webProject/icofont/css/icofont.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Soumission</title>
+    <style>
+        * {
+        font-family: "Judson", sans-serif;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--beige);
+      padding-left: 30px;
+    }
+      .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        z-index: -1;
+        background-image: url("../Background.svg");
+        background-size: contain; 
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+        .header {
+                background-color: transparent;
+                color: #fff;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 40px;
+            }
+    
+            h1 {
+                margin: 0;
+                font-weight: 700;
+                font-size: 35px;
+            }
+    
+            .btn-back {
+                background-color: transparent;
+                border: none;
+                color: #010157;
+                font-size: 1.4rem;
+                cursor: pointer;
+                transition: color 0.3s ease;
+                text-decoration: none;
+            }
+    
+            .btn-back:hover {
+                color: rgba(8, 0, 120, 0.7);
+            }
+            .container2 {
+                display: grid;
+                grid-template-columns: 7fr 3fr; 
+                grid-gap: 20px; 
+                padding: 5px;
+            }
+            input[type="text"],
+          input[type="password"],
+          input[type="email"],
+          textarea {
+            background-color: transparent; /* Fond transparent */
+            border: 1px solid #747373; /* Bordure grise */
+            border-radius: 5px; /* Coins arrondis */
+            padding: 10px; /* Espacement interne */
+            color: #000000; /* Couleur du texte */
+            width: 100%; /* Largeur à 100% */
+            box-sizing: border-box; /* Taille totale incluant la bordure */
+            transition: border-color 0.3s ease; /* Transition douce pour le changement de couleur de la bordure */
+            margin-bottom: 20px;
+        }
+          input[type="text"]:focus,
+          input[type="password"]:focus,
+          input[type="email"]:focus,
+          textarea:focus {
+            outline: none; /* Supprimer l'effet de focus par défaut */
+            border-color: #5b9bd5; /* Couleur de la bordure lorsque le champ est en focus */
+          }
+          label {
+            display: block; /* Affichage en bloc pour que chaque label soit sur une ligne séparée */
+            margin-bottom: 5px; /* Espacement en bas */
+            font-weight: bold; /* Texte en gras */
+          }
+          #tableau{
+        border-collapse: collapse; 
+        width: 100%;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 15);
+        margin: 50px;
+        margin-left: 0;
+        border: 1px solid #C4C4C4;
+    }
+    thead tr{
+        background-color: #010157;
+        opacity: 0.8;
+        color: white;
+    }
+    th, td{
+        padding: 15px 20px;
+    }
+    tbody  tr,td,th{
+        
+        border: 1px solid #ddd;
+    }
+    tbody td{
+        align-items: center;
+        justify-content: center;
+        background-color: transparent; ;
+    }
+    .Co-auteur {
+        background: none; 
+        border: none; 
+        color: inherit; 
+        font: inherit; 
+        cursor: pointer; 
+        outline: none; 
+        align-items: center;
+        justify-content: center;
+    }
+    .subDiv{
+        text-align: center; /* Pour centrer uniquement le contenu de ce conteneur */
+    }
+    #ajouter-coauteur{
+        background-color: #010157; /* Couleur de fond bleue */
+        border: none; /* Supprimer la bordure */
+        color: #fff; /* Couleur du texte en blanc */
+        padding: 10px 20px; /* Espacement interne */
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .submit-button{
+        background-color: #010157; /* Couleur de fond bleue */
+        border: none; /* Supprimer la bordure */
+        color: #fff; /* Couleur du texte en blanc */
+        padding: 10px 20px; /* Espacement interne */
+        border-radius: 5px; /* Coins arrondis */
+        cursor: pointer; /* Curseur pointeur */
+        transition: background-color 0.3s ease;
+        font-family: "Judson";
+        font-size: 1.3rem;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    .submit-button:hover, #ajouter-coauteur:hover{
+        background-color: #022e5e; /* Couleur de fond bleue foncée au survol */
+        cursor: pointer;
+    }
+      </style>
+  </head>
+  <body>
+    <div class="header">
+        <a href="#" class="btn-back"><i class="fas fa-arrow-left"></i> </a> <!-- Bouton de retour avec lien -->
+    </div>
+    <div class="main" id="mainContent">
+        <div class="background-image">
+            <img src="{% static 'image/Background.svg' %}" alt=""> 
+        </div>
+        <div class="container2">
+            <div class="form">
+                <h1>Votre Soumission</h1>
+
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="image">
+                <img class="image"src="{% static 'image/article.svg' %}" alt="Autre image">
+            </div>
+        </div>
+       
+    </div>
+</div>
+</body>
+</html>

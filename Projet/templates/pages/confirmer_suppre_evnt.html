@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmer la suppression de l'événement</title>
+</head>
+<body>
+    <h1>Confirmer la suppression de l'événement</h1>
+    <p>Êtes-vous sûr de vouloir supprimer l'événement "{{ evenement.nom_evnt }}" ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'commun'%}">
+            <button type="submit">Oui, supprimer</button>
+        </a>
+        
+        <a href="{% url 'commun'%}">Non, annuler</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Invitations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Ajout de Font Awesome -->    
+    <style>
+        body {
+            font-family: 'Judson', serif;
+            background-color: #fdf2e9;
+            color: #333;
+        }
+        .header {
+            background-color: #010157; /* Couleur de fond pour l'en-tête */
+            color: #fff; /* Couleur du texte de l'en-tête */
+            padding: 20px; /* Espacement intérieur */
+            display: flex;
+            align-items: center; /* Pour aligner les éléments verticalement */
+            justify-content: space-between; /* Pour aligner les éléments à gauche et à droite */
+            margin-bottom: 40px; /* Ajout d'un espace en bas de l'en-tête */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce pour l'en-tête */
+        }
+
+        .header h1 {
+            margin: 0; /* Pour enlever les marges par défaut */
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none; /* Enlever la décoration de lien */
+        }
+
+        .btn-back:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #020230; /* Bleu foncé */
+        }
+
+        .table th {
+            background-color: #010157 !important; /* Couleur de fond pour la première ligne du tableau */
+            color: #fff; 
+            border: 1px solid #020230;
+        }
+        .table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1);
+        }
+
+        
+
+        .btn-success {
+            background-color: #010157; /* Couleur de fond du bouton "Accepter" */
+            border-color: #010157; /* Bordure du bouton "Accepter" */
+            color: #fff; /* Couleur du texte du bouton "Accepter" */
+        }
+
+        .btn-success:hover {
+            background-color: #333399; /* Couleur de fond du bouton "Accepter" au survol */
+            border-color: #333399; /* Bordure du bouton "Accepter" au survol */
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <a href="commun" class="btn-back"><i class="fas fa-arrow-left"></i></a> <!-- Bouton de retour avec lien -->
+        <h1>Vos Invitations</h1>
+    </div>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Email Invitation</th>
+                        <th>Événement</th>
+                        <th>Rôle</th>
+                        <th>Accepted</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invitation in invitations %}
+                    <tr>
+                        <td>{{ invitation.user}}</td>
+                        <td>{{ invitation.evenement }}</td>
+                        <td>{{ invitation.get_role_display }}</td>
+                        <td>{{ invitation.accepted }}</td>
+                        <td>
+                            {% if not invitation.accepted %}
+                            <form method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="invitation_id" value="{{ invitation.id }}">
+                                <input type="hidden" name="action" value="accept">
+                                <button type="submit" class="btn btn-success" style="background-color:  #010157;">Accepter</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

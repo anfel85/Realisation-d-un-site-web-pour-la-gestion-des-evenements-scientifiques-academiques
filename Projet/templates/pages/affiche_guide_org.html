@@ -1,0 +1,63 @@
+<!-- pages/affiche_guide_org.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affichage du Guide d'Organisation</title>
+    <!-- Ajouter les liens vers Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Ajout de Font Awesome -->
+    <style>
+        body {
+            font-family: 'Judson', serif;
+            background-color: #fdf2e9;
+            color: #333;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .card-text {
+            font-size: 18px;
+        }
+
+        .btn-back {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'listEvnt' %}" class="btn btn-primary btn-back"><i class="fas fa-arrow-left"></i> Retour à la liste des événements</a>
+        <div class="card">
+            <h2 class="card-title">Guide d'Organisation pour l'événement "{{ evenement.nom_evnt }}"</h2>
+            {% if guide %}
+            <p class="card-text">Guide d'organisation: {{ guide.guide_soumission }}</p>
+            {% else %}
+            <p class="card-text">Aucun guide d'organisation trouvé pour cet événement.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Ajouter le script Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% extends 'pages/commun.html' %}
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+          <button type="submit" id="myButton">Supprimer</button>
+    </form>
+{% endblock %}

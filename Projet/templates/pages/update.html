@@ -1,0 +1,10 @@
+{% extends 'pages/Accueil_Organisateur.html' %}
+
+{% block content %}
+    <form action="modifier_Accueil_Organisateur" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        
+        <button  type="submit" class="Appliquer" >Appliquer</button>
+    </form>
+{% endblock %}

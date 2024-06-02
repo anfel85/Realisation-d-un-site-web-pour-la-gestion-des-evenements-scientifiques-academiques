@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des événements</title>
+    <!-- Ajouter les liens vers Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Ajout de Font Awesome -->
+    <style>
+        body {
+            font-family: 'Judson', serif;
+            background-color: #fdf2e9;
+            color: #333;
+        }
+
+        .header {
+            background-color: #010157; /* Couleur de fond pour l'en-tête */
+            color: #fff; /* Couleur du texte de l'en-tête */
+            padding: 20px; /* Espacement intérieur */
+            display: flex;
+            align-items: center; /* Pour aligner les éléments verticalement */
+            justify-content: space-between; /* Pour aligner les éléments à gauche et à droite */
+            margin-bottom: 40px; /* Ajout d'un espace en bas de l'en-tête */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce pour l'en-tête */
+        }
+
+        .header h1 {
+            margin: 0; /* Pour enlever les marges par défaut */
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none; /* Enlever la décoration de lien */
+        }
+
+        .btn-back:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        table {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #020230;
+        }
+
+        .table thead th {
+            background-color: #010157 !important;
+            color: #fdf2e9 !important;
+            border: 1px solid #020230 !important;
+        }
+
+        .table tbody tr{
+            background-color: transparent !important;
+        }
+        table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1) !important;
+        }
+
+        .btn-primary {
+            background-color: #010157;
+            border-color: #010157;
+        }
+
+        .btn-primary:hover {
+            background-color: #333399;
+            border-color: #333399;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <a href="commun" class="btn-back"><i class="fas fa-arrow-left"></i></a> <!-- Bouton de retour avec lien -->
+        <h1>Liste des événements</h1>
+    </div>
+    <div class="container">
+        <form method="GET" class="form-inline mb-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i> <!-- Icône de loupe -->
+                    </span>
+                </div>
+                <select name="search_criteria" class="form-control mr-2">
+                    <option value="nom_evnt">Nom</option>
+                    <option value="type">Type</option>
+                    <option value="ville">Lieu</option>
+                </select>
+                <input type="text" name="q" class="form-control" placeholder="Rechercher...">
+            </div>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom de l'événement</th>
+                    <th scope="col">Acronyme</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Dates</th>
+                    <th scope="col">Lieu</th>
+                    <th scope="col">Soumission</th>
+                    <th scope="col">Guide de soumission </th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for evnt in events %}
+                <tr>
+                    <td>{{ evnt.nom_evnt }}</td>
+                    <td>{{ evnt.acronym }}</td>
+                    <td>{{ evnt.get_type_display }}</td>
+                    <td>{{ evnt.date_debut_evnt|date:"d/m/Y" }} - {{ evnt.date_fin_evnt|date:"d/m/Y" }}</td>
+                    <td>{{ evnt.ville }}, {{ evnt.get_pays_display }}</td>
+                    <td><a href="{% url 'submission' evenement_id=evnt.id %}" class="btn btn-primary btn-sm">Soumettre</a></td>
+                    <td><a href="{% url 'affiche_guide_org' evenement_id=evnt.id %}" class="btn btn-info">plus</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ajouter le script Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

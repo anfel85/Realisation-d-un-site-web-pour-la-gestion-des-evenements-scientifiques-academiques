@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/sty.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Connexion</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#"  class="sign-in-form" method="post" >
+            {% csrf_token %} 
+            <input type="hidden" name="action" value="login">
+            <h2 class="title">Connexion</h2>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="text" placeholder="Email" name="email_cnx" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password"  placeholder="Mot de passe" name="motDePasse_cnx" />
+            </div>
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+            <input type="submit" value="Connexion" class="btn solid" />
+          </form>
+          <form
+            class="sign-up-form" action="" method="post"
+          >
+          {% csrf_token %}
+          <input type="hidden" name="action" value="register">
+            <h2 class="title">Inscription</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Nom" name="nom" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Prenom" name="prenom" />
+            </div>
+            <div class="input-field">
+              <i class="fa fa-university" aria-hidden="true"></i>
+              <input type="organisation" placeholder="Organisation" name="organisation">
+            </div>
+            
+              <div class="input-field">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                
+                <select
+              id="pays"
+              name="pays"
+              placeholder="pays"
+              title="Pays"
+            >
+              <option disabled selected>Pays</option>
+            </select>
+            <input type="hidden" name="pays" id="selectedCountry"/>
+              </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" name="email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                name="motDePasse"
+              />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Confirmer le Mot de passe"
+                name="password_conf"
+              />
+            </div>
+            
+              <input type="submit" value="s'inscrire"   class="btn solid"/>
+           
+          </form>
+        </div>
+      </div>
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>Nouveau ici ?</h3>
+            <p>
+              Enregistrez-vous avec vos<br />
+              coordonnées personnelles pour<br />
+              utiliser toutes les fonctionnalités<br />
+              du site.<br />
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Inscription
+            </button>
+          </div>
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Bienvenue</h3>
+            <p>
+              Pour bénéficier de toutes <br />
+              les fonctionnalités du site, veuillez<br />
+              fournir vos informations personnelles.<br />
+            </p>
+            <button class="btn transparent"   id="sign-in-btn">Connexion</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{%  static 'js/app.js'%}"></script>
+    <script src="{%  static 'js/pays.js'%}"></script>
+
+  </body>
+</html>

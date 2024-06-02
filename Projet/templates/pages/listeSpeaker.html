@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Présentateurs pour {{ evenement.titre }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+            font-family: 'Judson', serif;
+        }
+        .header {
+            background-color: #010157; /* Bleu nuit */
+            color: #fdf2e9; /* Beige */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .btn-back:hover {
+            color: rgba(161, 159, 159, 0.7);
+        }
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #020230; /* Bleu foncé */
+        }
+        .table thead th {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            border: 1px solid #020230; /* Bleu foncé */
+        }
+        .table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1);
+        }
+        .btn-custom {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+        }
+        .btn-custom:hover {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            opacity: 0.8;
+        }
+        .btn-download {
+            background-color: #010157; /* Bleu foncé */
+            color: #fdf2e9; /* Beige */
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .btn-download:hover {
+            background: #fdf2e9;
+            color: #010157;
+            text-decoration: none;
+            border: 2px solid #010157;
+        }
+        .alert-info {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+            border: 1px solid #010157; /* Bleu */
+        }
+        .modal-header {
+            background-color: #fdf2e9; /* Bleu */
+            color: #010157; /* Beige */
+            border-bottom: none;
+        }
+        
+        .modal-content {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-footer {
+            background-color: #fdf2e9; /* Bleu */
+            border-top: none;
+            justify-content: right;
+        }
+        .close {
+            color: #010157; /* Beige */
+            opacity: 1;
+        }
+        .close:hover {
+            color:#0909af;
+        }
+        .card-header{
+            background-color: #010157; /* Beige */
+            color: #fdf2e9;
+        }
+        .card-body{
+            background-color: #fdf2e9; /* Beige */
+            color: #010157;
+        }
+        #fermer{
+            background-color: #010157; /* Beige */
+            color: #fdf2e9; 
+        }
+        .evaluateurs-column {
+                width: 20%;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="btn-back" class="btn-back"><i class="fas fa-arrow-left"></i></button>
+        <h1>Liste des Orateurs</h1>
+    </div>
+
+    <div class="container mt-5">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Orateur</th>
+                    <th>la présentation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for presentation in presentations %}
+                <tr>
+                    <td>{{ presentation.user.nom }}{{ presentation.user.prenom }}</td>
+                    <td colspan="4">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalPresentation{{ presentation.id }}">Présentation</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modals pour les présentations -->
+    {% for presentation in presentations %}
+    <div class="modal fade" id="modalPresentation{{ presentation.id }}" tabindex="-1" role="dialog" aria-labelledby="modalPresentationLabel{{ presentation.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-custom">
+                        <div class="card-header">
+                            {{ presentation.titre_pres }}
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Affiliation :</strong><br> {{ presentation.affiliation_pres }}</p> 
+                            <p><strong>Biographie :</strong><br> {{ presentation.biographie_pres }}</p> 
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="fermer" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('btn-back').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

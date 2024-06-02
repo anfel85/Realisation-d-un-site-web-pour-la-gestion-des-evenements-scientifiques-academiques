@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la Soumission</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<style>
+    body {
+        font-family: 'Judson', serif;
+        background-color: #fdf2e9;
+        color: #333;
+    }
+    .header {
+        background-color: #010157;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .header h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    .btn-back {
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        text-decoration: none;
+    }
+    .btn-back:hover {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .card-header {
+        background-color: #010157;
+        color: #fdf2e9;
+    }
+    .card-footer {
+        background-color: #fdf2e9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card-body {
+        background-color: #fdf2e9;
+    }
+    .btn-secondary {
+        background-color: #010157;
+    }
+    .btn-link {
+        color: #010157;
+    }
+    /* Bouton Télécharger */
+    .btn-link {
+        color: #010157;
+        border: 1px solid #010157;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+    .btn-link:hover {
+        background-color: #010157;
+        color: #fdf2e9;
+    }
+    /* Tableau des Évaluateurs */
+    .table {
+        background-color: #fff;
+        border-collapse: collapse;
+        width: 80%;
+        margin: 0 auto; /* Centrer horizontalement */
+    }
+    .table th,
+    .table td {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #010157;
+        color: #fdf2e9;
+    }
+</style>
+<body>
+    <div class="header" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <a href="{% url 'liste_soumissions' evenement_id=soumission.evenement.id %}" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h1>Détails de votre soumission</h1>
+    </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ soumission.titre }}</h2>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Résumé</h4>
+                <p class="card-text">{{ soumission.resume }}</p>
+                <h4 class="card-title">Article</h4>
+                <a href="{{ soumission.contrat.url }}" target="_blank" class="btn btn-link">Télécharger</a>
+            </div>
+            <div class="card-footer text-right">
+                <a href="{% url 'liste_soumissions' evenement_id=soumission.evenement.id %}" class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        </div>
+    </div>
+    {% if evaluations %}
+    <table class="table mt-5"> <!-- Ajout de marges pour l'espace -->
+        <thead>
+            <tr>
+                <th>Évaluateur</th>
+                <th>Commentaire</th>
+                <th>Maitrise</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evaluation in evaluations %}
+            <tr>
+                <td>{{ evaluation.user.nom }} {{ evaluation.user.prenom }}</td>
+                <td>{{ evaluation.commentaire }}</td>
+                <td>{{ evaluation.maitrise }}</td>
+                <td>{{ evaluation.note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="container text-center mt-5">
+        <p>Aucune évaluation n'a été trouvée pour cette soumission.</p>
+    </div>
+    {% endif %}
+    <!-- Bootstrap JS (facultatif, uniquement si vous en avez besoin) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

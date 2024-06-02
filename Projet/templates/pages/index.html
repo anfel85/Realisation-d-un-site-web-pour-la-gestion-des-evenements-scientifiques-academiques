@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    >
+    <title>welcome</title>
+</head>
+<body>
+    <section class="home" id="acceuil">
+        <nav>
+            <h2> Slite </h2>
+            <ul id="actions">
+                <li><a href="">Acceuil</a></li>
+                <li><a href=""> Aide</a></li>
+                <li><a href=""> Services</a></li>
+                <li><a href=""> Evénements</a></li>
+            </ul>
+            <button id="menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+<div class="content">
+    <div class="content-text">
+        <h1>Gerez votre événement comme un pro</h1>
+        <p>
+          Bienvenue à la plateforme de gestion d'événements<br />
+          où vous apprendrez , partagerez et vous connecterez <br />avec des
+          experts de l'industrie.<br />
+          Inscrivez-vous dès maintenant pour ne rien manquer !
+        </p>
+        <a href="{% url 'connexion' %}" class="btn">Acceder</a>
+    </div>
+    <div class="container-images">
+        <img src="{% static 'image/Onboarding-cuate.svg' %}" alt="img" class="pic">
+    </div>
+</div>
+</section>
+<script src="{%  static 'js/script.js'%}"></script>
+</body>
+</html>

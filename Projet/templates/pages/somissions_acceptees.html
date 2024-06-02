@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <title>Soumissions Acceptées</title>
+    <style>
+        :root {
+            --blue: #010157;
+            --beige: #fdf2e9;
+        }
+        body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+            font-family: 'Judson', serif;
+        }
+        .header {
+            background-color: #010157; /* Bleu nuit */
+            color: #fdf2e9; /* Beige */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .btn-back:hover {
+            color: rgba(161, 159, 159, 0.7);
+        }
+        .table-container {
+            max-width: 90%; /* Largeur maximale du tableau */
+            margin: 0 auto; /* Centrer le tableau */
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dadadf; /* Bleu foncé */
+        }
+        .table {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .table thead th {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            border: 1px solid #020230; /* Bleu foncé */
+        }
+        .table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1);
+        }
+        .btn-custom {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+        }
+        .btn-custom:hover {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            opacity: 0.8;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .file-label {
+            background-color: var(--blue);
+            color: var(--beige);
+            border: none;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            border-radius: 5px; /* Bordure arrondie */
+        }
+        .file-label.zip-label {
+            padding: 5px 8px; /* Taille plus petite */
+        }
+        .file-label:hover {
+            background-color: darkblue;
+        }
+        button {
+            background-color: var(--blue);
+            color: var(--beige);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px; /* Bordure arrondie */
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        .modal-header {
+            background-color: #fdf2e9; /* Bleu */
+            color: #010157; /* Beige */
+            border-bottom: none;
+        }
+        
+        .modal-content {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-footer {
+            background-color: #fdf2e9; /* Bleu */
+            border-top: none;
+            justify-content: right;
+        }
+        .close {
+            color: #010157; /* Beige */
+            opacity: 1;
+        }
+        .close:hover {
+            color:#0909af;
+        }
+        .card-header{
+            background-color: #010157; /* Beige */
+            color: #fdf2e9;
+        }
+        .card-body{
+            background-color: #fdf2e9; /* Beige */
+            color: #010157;
+        }
+        #fermer{
+            background-color: #010157; /* Beige */
+            color: #fdf2e9; 
+        }
+        @media screen and (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+                border-bottom: 2px solid var(--blue);
+                border-radius: 5px; /* Bordure arrondie */
+                padding: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                border-bottom: 1px solid var(--blue);
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 15px;
+                font-weight: bold;
+                text-align: left;
+                background-color: var(--beige);
+                border-right: 1px solid var(--blue);
+            }
+            td:last-child {
+                border-bottom: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="btn-back" class="btn-back"><i class="fas fa-arrow-left"></i></button>
+        <h1>Soumissions Acceptées</h1>
+    </div>
+    <div class="table-container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Informations</th>
+                    <th>Camera Ready PDF</th>
+                    <th>Camera Ready ZIP</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for soumission in soumissions %}
+                    <tr>
+                        <td data-label="Titre">{{ soumission.titre }}</td>
+                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalInfos{{ soumission.id }}">Infos</button></td>
+                        <td data-label="Camera Ready PDF">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="soumission_id" value="{{ soumission.id }}">
+                                <label for="id_camera_ready_pdf_{{ soumission.id }}" class="file-label zip-label">Choisir un fichier</label>
+                                <input type="file" name="camera_ready_pdf" id="id_camera_ready_pdf_{{ soumission.id }}">
+                        </td>
+                        <td data-label="Camera Ready ZIP">
+                                <label for="id_camera_ready_zip_{{ soumission.id }}" class="file-label zip-label">Choisir un fichier</label>
+                                <input type="file" name="camera_ready_zip" id="id_camera_ready_zip_{{ soumission.id }}">
+                        </td>
+                        <td data-label="Actions">
+                                <button type="submit">Soumettre</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% for soumission in soumissions %}
+        <!-- Modal Infos -->
+        <div class="modal fade" id="modalInfos{{ soumission.id }}" tabindex="-1" role="dialog" aria-labelledby="modalInfosLabel{{ soumission.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card card-custom">
+                            <div class="card-header">
+                                 {{ soumission.titre }}
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Résumé :</strong><br> {{ soumission.resume }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="fermer" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('btn-back').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

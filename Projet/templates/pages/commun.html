@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>commun</title>
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'css/commun.css' %}">
+</head>
+<body>
+    {{ user }}
+   <!-- <h2> Slite </h2> -->
+    <ul class="nav-links">
+        <li>
+            <a href="listEvnt"><img src="{% static 'image/Search.svg' %}" alt="Invitations" class="nav-icon"></a>
+        </li>
+        <li>
+            <a href="listinv">
+                <img src="{% static 'image/bell.svg' %}" alt="Invitations" class="nav-icon">
+            </a>
+        </li>
+        <li>
+            <a href="modifier_profil/{{user.id}}">
+                <img src="{% static 'image/profileIcone.svg' %}" alt="Profil" class="nav-icon">
+            </a>
+        </li>
+        <li><a href="{% url 'logout' %}"><img src="{% static 'image/logout.svg' %}" alt="Profil" class="nav-icon"></a></li>
+            <!--<a href="supprimer_profil/{{ user.id }}">sup</a> -->
+        
+    </ul>
+    <div class="slide-container swiper">
+        <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+                <div class="card swiper-slide">
+                    <div class="card-content" id="premiere">
+                        <a href="{% url 'creation' %}">
+                            <img src="{% static 'image/undraw_add_files_re_v09g.svg' %}" class="image" alt="image2">
+                            <p>Créer un événement</p>
+                        </a>
+                    </div>
+                </div>
+                {% for event_info in roles_for_events %}
+                <div class="card swiper-slide">
+                    <div class="card-content">
+                        <div class="inner-header">
+                            <h2 class="name"> {{ event_info.event.nom_evnt }} </h2>
+                        </div>
+                        <div>
+                            <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                                <defs>
+                                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                                </defs>
+                                <g class="parallax">
+                                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="white">
+                            <p class="instruction">Vos rôles</p>
+                            <p class="description">
+                                {% for role in event_info.roles %}
+                                <a href="{% if role == 'Organisateur' %}
+                                {% url 'liens' evenement_id=event_info.event.id %}
+                            {% elif role == 'Auteur' %}
+                                {% url 'liens_aut' evenement_id=event_info.event.id %}
+                            {% elif role == 'Évaluateur' %}
+                                {% url 'liensEv' evenement_id=event_info.event.id %}
+                            {% elif role == 'Speaker' %}
+                                {% url 'speaker' evenement_id=event_info.event.id %}
+                            {% elif role == 'Éditeur' %}
+                                {% url 'ajouter_guide' evenement_id=event_info.event.id %}
+                            {% endif %}">
+                                        {{ role }}
+                                    </a>
+                                    {% if not forloop.last %} {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</body>
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/script2.js' %}"></script>
+</html>

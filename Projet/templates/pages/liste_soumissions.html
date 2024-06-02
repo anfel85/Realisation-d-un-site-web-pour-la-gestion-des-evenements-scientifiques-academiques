@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Soumissions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Judson', serif;
+            background-color: #fdf2e9;
+            color: #333;
+        }
+        .header {
+            background-color: #010157;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        table {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #020230;
+        }
+
+        .table thead th {
+            background-color: #010157 !important;
+            color: #fdf2e9 !important;
+            border: 1px solid #020230 !important;
+        }
+
+        table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1);
+        }
+        .table td:nth-child(3) {
+            max-width: 200px;
+        }
+
+        .btn-common {
+            height: 38px;
+            padding: 7px 12px;
+            font-size: 14px;
+            margin: 0 5px 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../../commun" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h1>Liste des Soumissions</h1>
+    </div>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Auteurs</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Co-auteurs</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for soumission in soumissions %}
+                        <tr>
+                            <td>{{ soumission.user.nom }} {{ soumission.user.prenom }}</td>
+                            <td>{{ soumission.titre }} {{ soumission.evenement.heure_fin_soumission }}</td>
+                            <td>
+                                {% for co_auteur in soumission.coauteurs %}
+                                    {{ co_auteur.nom_coauteur }} {{ co_auteur.prenom_coauteur }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                
+                                 <!-- Add logic to conditionally hide buttons -->
+                                 {% if soumission.evenement.date_fin_soumission > today  %}
+                                 <a href="{% url 'modifier_soumission' evenement_id=soumission.evenement.id soumission_id=soumission.id %}" class="btn btn-primary btn-common">Modifier</a>
+                                 <form method="POST" action="{% url 'delete_soumission' soumission_id=soumission.id %}" style="display:inline;">
+                                     {% csrf_token %}
+                                     <button type="submit" class="btn btn-danger btn-common">Supprimer</button>
+                                 </form>
+                             {% else %}
+                                 <!-- If submission deadline has passed, hide the buttons -->
+                                 <span>Submission deadline passed</span>
+                             {% endif %}
+                             <!-- Info button remains visible regardless of the deadline -->
+                             <a href="{% url 'details_soumission' evenement_id=soumission.evenement.id soumission_id=soumission.id %}" class="btn btn-info btn-common">Infos</a>
+                         
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Bootstrap JS (facultatif) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

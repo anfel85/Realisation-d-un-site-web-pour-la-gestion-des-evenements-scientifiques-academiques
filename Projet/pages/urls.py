@@ -1,0 +1,53 @@
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views
+
+urlpatterns=[
+    path('',views.index,name='index'),
+    path('aide',views.aide,name='aide'),
+    path('connexion/',views.connexion,name='connexion'),  
+    path('commun',views.commun,name='commun'),
+    path('creation',views.creation,name='creation'),
+    #path('Accueil_Organisateur', views.Accueil_Organisateur , name='Accueil_Organisateur'),
+    path('modifier_Accueil_Organisateur/<int:my_id>', views.modifier_Accueil_Organisateur , name='modifier_Accueil_Organisateur'),
+    path('supprimer_Accueil_Organisateur/<int:my_id>', views.supprimer_Accueil_Organisateur , name='supprimer_Accueil_Organisateur'),
+    path('modifier_profil/<int:my_id>', views.modifier_profil , name='modifier_profil'),
+    path('supprimer_profil/<int:my_id>', views.supprimer_profil , name='supprimer_profil'),
+    path('submission/<int:evenement_id>',views.submission,name='submission'),
+    path('modifer_soumission/<int:evenement_id>/<int:soumission_id>',views.modifier_soumission,name='modifier_soumission'),
+    path('listEvnt', views.listEvnt , name='listEvnt'),
+    path('Acceuil_Evaluateur',views.Acceuil_Evaluateur,name='Acceuil_Evaluateur'),
+    path('liste_soumissions/<int:evenement_id>/', views.liste_soumissions, name='liste_soumissions'),
+    path('affiche_guide_org/<int:evenement_id>/', views.affiche_guide_org, name='affiche_guide_org'),
+    path('details_soumission/<int:evenement_id>/<int:soumission_id>/', views.details_soumission, name='details_soumission'),
+    path('invitation_view/<int:evenement_id>', views.invitation_view, name='invitation_view'),
+    path('liens/<int:evenement_id>',views.liens,name='liens'),
+    path('listinv',views.mes_invitations,name='listinv'),
+    path('evaluer/<int:evenement_id>/<int:soumission_id>', views.evaluer , name='evaluer'),
+    path('liensEv/<int:evenement_id>', views.liensEv , name='liensEv'),
+    path('soumissions_par_evenement/<int:evenement_id>', views.soumissions_par_evenement, name='soumissions_par_evenement'),
+    path('affectation/<int:evenement_id>', views.affectation, name='affectation'),
+    path('affectation_ev/<int:evenement_id>', views.affectation_ev, name='affectation_ev'),
+    path('modifier_evaluation/<int:evenement_id>/<int:soumission_id>', views.modifier_evaluation, name='modifier_evaluation'),
+    path('supprimer_evaluation/<int:evenement_id>/<int:soumission_id>/', views.supprimer_evaluation, name='supprimer_evaluation'),
+    path('afficher_encheres/<int:evenement_id>', views.afficher_encheres, name='afficher_encheres'),
+    path('liste_encheres/<int:evenement_id>',views.liste_encheres,name='liste_encheres'),
+    path('liste_evaluation_org/<int:evenement_id>',views.liste_evaluation_org,name='liste_evaluation_org'),
+    path('somissions_acceptees/<int:evenement_id>/', views.somissions_acceptees, name='somissions_acceptees'),
+    path('liens_aut/<int:evenement_id>/', views.liens_aut, name='liens_aut'),
+    path('speaker/<int:evenement_id>/', views.speaker, name='speaker'),
+    path('presentation/<int:presentation_id>/', views.presentation_detail, name='presentation_detail'),
+    path('presentation/modifier/<int:presentation_id>/', views.modifier_presentation, name='modifier_presentation'),
+    path('presentation/supprimer/<int:presentation_id>/', views.supprimer_presentation, name='supprimer_presentation'),
+    path('statistics/<int:evenement_id>/', views.statistics, name='statistics'),
+    path('liste_speakers/<int:evenement_id>/', views.liste_speakers,name='liste_speakers'),
+    path('ajouter_guide/<int:evenement_id>/', views.ajouter_guide,name='ajouter_guide'),
+    path('ajouter_guide/modifier/<int:guide_id>/', views.modifier_guide, name='modifier_guide'),
+    path('ajouter_guide/supprimer/<int:guide_id>/', views.supprimer_guide, name='supprimer_guide'),
+    path('guide_detail/<int:guide_id>/', views.guide_detail, name='guide_detail'),
+    path('logout/', views.custom_logout_view, name='logout'),
+    path('soumission/<int:soumission_id>/delete/', views.delete_soumission, name='delete_soumission'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

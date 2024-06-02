@@ -1,0 +1,8 @@
+{% extends 'pages/Accueil_Organisateur.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <button  type="submit" class="supprimer" >Supprimer</button>
+    </form>
+{% endblock %}

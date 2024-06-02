@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Présentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+    background-color: #fdf2e9;
+    font-family: "Judson";
+    margin: 0;
+    padding: 0;
+  }
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100vh; /* Cette propriété spécifie que l'image de fond couvrira la hauteur de l'écran */
+    z-index: -1;
+    background-image: url("{% static 'image/Background.svg' %}");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+.header {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+          color: #010157;
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #010157;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            color: rgba(8, 0, 120, 0.7);
+        }
+.container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap :20px;
+          width: 100%;
+          border-radius: 10px;
+        }
+        input[type="text"],
+input[type="password"],input[type="email"],
+textarea {
+    background-color: transparent; /* Fond transparent */
+    border: 1px solid #747373; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px; /* Espacement interne */
+    color: #555; /* Couleur du texte */
+    width: 100%; /* Largeur à 100% */
+    box-sizing: border-box; /* Taille totale incluant la bordure */
+    transition: border-color 0.3s ease; /* Transition douce pour le changement de couleur de la bordure */
+}
+textarea{
+    height: 200px;
+}
+
+/* Style pour le focus */
+input[type="text"]:focus,
+input[type="password"]:focus,input[type="email"]:focus,
+textarea:focus {
+    outline: none; /* Supprimer l'effet de focus par défaut */
+    border-color: #5b9bd5; /* Couleur de la bordure lorsque le champ est en focus */
+}
+
+/* Style pour les labels */
+label {
+    display: block; /* Affichage en bloc pour que chaque label soit sur une ligne séparée */
+    margin-bottom: 5px; /* Espacement en bas */
+    font-weight: bold; /* Texte en gras */
+}
+#pic{
+  width: 600px;
+}
+
+.button-container {
+  text-align: center; /* Pour centrer uniquement le contenu de ce conteneur */
+}
+/* Style pour le bouton */
+#myButton{
+    background-color: #010157; /* Couleur de fond bleue */
+    border: none; /* Supprimer la bordure */
+    color: #fff; /* Couleur du texte en blanc */
+    padding: 10px 20px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur de fond */
+
+  }
+
+/* Style pour le bouton au survol */
+#myButton:hover {
+    background-color: #022e5e; /* Couleur de fond bleue foncée au survol */
+}
+    </style>
+    </head>
+<body>
+    <div class="header">
+        <a href="#" class="btn-back"><i class="fas fa-arrow-left"></i></a> <!-- Bouton de retour avec lien -->
+        <h1>Détails de la Présentation</h1>
+    </div>
+    <div class="background-image">
+        <img src= "{% static 'image/Background.svg' %}" alt="">
+      </div>
+      <div class="container">
+        <div class="picture">
+            <img id="pic" src= "{% static 'image/conf.svg' %}" alt="">
+        </div>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.titre_pres.label_tag }}
+                    {{ form.titre_pres }}
+                </div>
+                <div class="form-group">
+                    {{ form.affiliation_pres.label_tag }}
+                    {{ form.affiliation_pres }}
+                </div>
+                <div class="form-group">
+                    {{ form.biographie_pres.label_tag }}
+                    {{ form.biographie_pres }}
+                </div>
+                <div class="button-container">
+                    <button id="myButton" type="submit" class="btn btn-primary">Mettre à jour</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/creation.css' %}">
+    
+    <title>Creation</title>
+</head>
+<body style="background-image: url({% static 'image/Background.svg' %});">
+     <h2> Slite </h2>
+     <section class="container forms">
+        <div class="form-content">
+            <form action="" method="GET">
+                {% csrf_token %}
+                <img src="{% static 'image/undraw_add_tasks_re_s5yj.svg' %}" class="image" alt="">
+                <div class="field input-field">
+                    <input type="text" name="titre" placeholder="Titre" class="input">
+                </div>
+                <div class="field input-field">
+                    <input type="text" name="acronym"  placeholder="Acronym" class="input">
+                </div>
+                <div class="field input-field">
+                    <select  name="type" title="Sélectionnez le type" style=" background-image: url( {% static 'image/bx-chevron-down.svg' %}) ; ">
+                        <option value="" disabled selected style="display:none;">Type</option>
+                        <option value="Type 1">Conférence</option>
+                        <option value="Type 2">Journée d'étude</option>
+                        <option value="Type 3">Atelier</option>
+                        <option value="Type 4">Convention</option>
+                        <option value="Type 5">Congrès</option>
+                        <option value="Type 6">Colloque</option>
+                        <option value="Type 7">Symposium</option>
+                        <option value="Type 8">Stand</option>
+                        <option value="Type 9">Séminaire</option>
+                    </select>
+                </div>
+                
+                <div class="field input-field">
+                    <input type="text" name="lieu" placeholder="Lieu" class="input">
+                </div>
+                <div class="field input-field">
+                    <input type="date" name="date" placeholder="Date" class="input">
+                </div>
+                <div class="field button-field">
+                    <button type="submit"> Créer </button>
+                </div>
+            </form>
+        </div>
+
+     </section>
+     
+</body>
+</html>

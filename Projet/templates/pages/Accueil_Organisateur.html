@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="myProjects/webProject/icofont/css/icofont.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+
+    <title>Votre événement</title>
+    <style>
+       body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+            font-family: 'Judson', serif;
+        }
+        .header {
+            background-color: #010157; /* Bleu nuit */
+            color: #fdf2e9; /* Beige */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .btn-back:hover {
+            color: rgba(161, 159, 159, 0.7);
+        }
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100vh; /* Cette propriété spécifie que l'image de fond couvrira la hauteur de l'écran */
+    z-index: -1;
+    background-image: url("{% static 'image/Background.svg' %}");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+        .information{
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          grid-gap :80px;
+          width: 90%;
+          border-radius: 10px;
+        }
+        input[type="text"],
+input[type="date"],input[type="time"],
+textarea, select {
+    background-color: transparent; /* Fond transparent */
+    border: 1px solid #747373; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+    margin-left: 50px;
+    padding: 10px; /* Espacement interne */
+    color: #000000; /* Couleur du texte */
+    width: 100%; /* Largeur à 100% */
+    box-sizing: border-box; /* Taille totale incluant la bordure */
+    transition: border-color 0.3s ease; /* Transition douce pour le changement de couleur de la bordure */
+}
+label {
+    display: block; /* Affichage en bloc pour que chaque label soit sur une ligne séparée */
+    margin-bottom: 5px; /* Espacement en bas */
+    margin-left: 50px;
+    font-weight: bold; /* Texte en gras */
+}
+.illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            height: 100vh; /* Assurez-vous que le conteneur prend toute la hauteur de la fenêtre */
+        }
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+        }
+.bout {
+  text-align: center; /* Pour centrer uniquement le contenu de ce conteneur */
+}
+#myButton{
+    background-color: #010157; /* Couleur de fond bleue */
+    border: none; /* Supprimer la bordure */
+    color: #fff; /* Couleur du texte en blanc */
+    margin-bottom: 50px;
+    padding: 10px 20px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur de fond */
+    font-size: 1.2rem;
+  }
+
+/* Style pour le bouton au survol */
+#myButton:hover {
+    background-color: #022e5e; /* Couleur de fond bleue foncée au survol */
+}
+
+#saveButton, 
+        #deleteButton {
+            border: none; /* Supprimer la bordure */
+            color: #fff; /* Couleur du texte en blanc */
+            padding: 10px 20px; /* Espacement interne */
+            border-radius: 5px; /* Coins arrondis */
+            cursor: pointer; /* Curseur pointeur */
+            transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur de fond */
+            font-size: 1.2rem;
+            margin: 10px;
+        }
+        #saveButton {
+            background-color: #010157; /* Couleur de fond bleue */
+        }
+        #saveButton:hover {
+            background-color: #022e5e; /* Couleur de fond bleue foncée au survol */
+        }
+        #deleteButton {
+            background-color: #d9534f; /* Couleur de fond rouge */
+        }
+        #deleteButton:hover {
+            background-color: #c9302c; /* Couleur de fond rouge foncée au survol */
+        }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <button id="btn-back" class="btn-back"><i class="fas fa-arrow-left"></i></button>
+      <h1>Informations de l'événement</h1>
+  </div>
+    <div class="background-image">
+      <img src= "{% static 'image/Background.svg' %}" alt="">
+    </div>
+    <div class="container">
+
+    <div id="accueilContent">
+      <div class="information" id="informationContent" >
+        <div class="infobox">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="saveButton" >Modifier</button>
+        </form>
+        <form method="post" action="{% url 'supprimer_Accueil_Organisateur' my_id=obj.id %}">
+            {% csrf_token %}
+            <button type="submit" id="deleteButton" >Supprimer </button>
+        </form>
+        
+        </div>
+        <div class="illustration" id="illu">
+          <img id="ill" src= "{% static 'image/Accueil_organisateur.svg' %}"  alt="" />
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('btn-back').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+  </body>
+</html>

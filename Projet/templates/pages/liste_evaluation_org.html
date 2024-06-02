@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des évaluations</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom styles here */
+        /* Header styles */
+        .header {
+            background-color: #010157; /* Bleu nuit */
+            color: #fdf2e9; /* Beige */
+            padding: 20px; /* Espacement intérieur */
+            display: flex;
+            align-items: center; /* Pour aligner les éléments verticalement */
+            justify-content: space-between; /* Pour aligner les éléments à gauche et à droite */
+            margin-bottom: 40px; /* Ajout d'un espace en bas de l'en-tête */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce pour l'en-tête */
+        }
+
+        .header h1 {
+            margin: 0; /* Pour enlever les marges par défaut */
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Table styles */
+        body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+            font-family: 'Judson', serif;
+        }
+
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #020230; /* Bleu foncé */
+        }
+
+        .table thead th {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            border: 1px solid #020230; /* Bleu foncé */
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1);
+        }
+
+        .btn-custom {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+        }
+
+        .btn-custom:hover {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            opacity: 0.8;
+        }
+
+        .modal-header,
+        .modal-footer {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+        }
+
+        .modal-body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+        }
+
+        .modal-header .close {
+            color: #010157; /* Bleu */
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            border: none;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+            opacity: 0.8;
+        }
+
+        .card-custom {
+            border: 1px solid #020230; /* Bleu foncé */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-header {
+            background-color: #010157; /* Bleu */
+            color: #fdf2e9; /* Beige */
+        }
+
+        .card-body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+        }
+
+        .back-link {
+            font-family: 'Judson', serif;
+            font-size: 1rem; /* 16px */
+            color: #010157; /* Bleu */
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin: 20px 20px 20px auto; /* Ajout de margin pour le placement en haut à droite */
+        }
+
+        .back-link i {
+            margin-right: 10px;
+        }
+
+        h2 {
+            font-family: 'Judson';
+            font-size: 2.0rem; /* Agrandissement de la taille de la police */
+            letter-spacing: 0.12rem; /* 0.12rem */
+            text-align: right; /* Alignement à droite */
+            margin-right: 20px; /* Ajustement de la marge à droite */
+            margin-top: 0; /* Ajout de marge en haut */
+        }
+        .btn-pdf {
+            background-color: #ff6b6b; /* Rouge */
+            color: #fdf2e9; /* Beige */
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .btn-zip {
+            background-color: #6c5ce7; /* Violet */
+            color: #fdf2e9; /* Beige */
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .not-available {
+            color: #535050; /* Gris */
+            font-style: italic;
+        }
+        .btn-inline {
+            display: inline-block;
+            margin-bottom: 10px; /* Ajustez cette valeur selon vos besoins */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="btn-back" class="btn-back"><i class="fas fa-arrow-left"></i></button> <!-- Bouton de retour stylisé -->
+        <h1>Liste des évaluations</h1>
+    </div>
+
+    <div class="container mt-5">
+        <!-- Ton contenu va ici -->
+        
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Titre de la soumission</th>
+                        <th scope="col">Infos</th>
+                        <th scope="col">Evaluations</th>
+                        <th scope="col">Accepter</th>
+                        <th scope="col">Etat</th>
+                        <th scope="col">Camera Ready </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for soumission_id, soumission_data in evaluations_par_soumission.items %}
+                <tr>
+                    <td>{{ soumission_data.titre }}</td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalInfos{{ soumission.id }}">Infos</button></td>
+                    <td>
+                        <button class="btn btn-custom" data-toggle="modal" data-target="#evaluationModal{{ soumission_id }}">
+                            Voir les évaluations
+                        </button>
+
+
+                        <div class="modal fade" id="modalInfos{{ soumission.id }}" tabindex="-1" role="dialog" aria-labelledby="modalInfosLabel{{ soumission.id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card card-custom">
+                                            <div class="card-header">
+                                                Titre: {{ soumission_data.titre }}
+                                            </div>
+                                            <div class="card-body">
+                                                <p><strong>Résumé :</strong><br> {{ soumission_data.resume }} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="fermer" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="evaluationModal{{ soumission_id }}" tabindex="-1" role="dialog" aria-labelledby="evaluationModalLabel{{ soumission_id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="evaluationModalLabel{{ soumission_id }}">Évaluations pour {{ soumission_data.titre }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for eval in soumission_data.evaluations %}
+                                        <div class="card card-custom">
+                                            <div class="card-header">
+                                                Évaluateur: {{ eval.user.nom }} {{ eval.user.prenom }}
+                                            </div>
+                                            <div class="card-body">
+                                                <p><strong>Note:</strong> {{ eval.note }}</p>
+                                                <p><strong>Maîtrise:</strong> {{ eval.maitrise }}</p>
+                                                <p><strong>Commentaire:</strong> {{ eval.commentaire }}</p>
+                                                <p><strong>Commentaire Confidentiel:</strong> {{ eval.commentaire_confidentiel }}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input type="hidden" name="soumission_id" value="{{ soumission_id }}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="accept" id="acceptTrue{{ soumission_id }}" value="true" {% if soumission_data.accept %}checked{% endif %}>
+                                <label class="form-check-label" for="acceptTrue{{ soumission_id }}">Accepter</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="accept" id="acceptFalse{{ soumission_id }}" value="false" {% if not soumission_data.accept %}checked{% endif %}>
+                                <label class="form-check-label" for="acceptFalse{{ soumission_id }}">Refuser</label>
+                            </div>
+                            <button type="submit" class="btn btn-custom mt-2">Valider</button>
+                        </form>
+                    </td>
+                    <td>
+                        {% if soumission_data.accept %}
+                            Accepté
+                        {% else %}
+                            Refusé
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if soumission_data.accept %}
+                        {% if soumission_data.camera_ready_pdf %}
+                        <a href="{{ soumission_data.camera_ready_pdf.url }}" target="_blank" class="btn-pdf btn-inline">PDF</a>
+                    {% else %}
+                        <span class="not-available">PDF non disponible</span>
+                    {% endif %}
+                    
+                    {% if soumission_data.camera_ready_zip %}
+                        <a href="{{ soumission_data.camera_ready_zip.url }}" target="_blank" class="btn-zip btn-inline">Zip</a>
+                    {% else %}
+                        <span class="not-available">Zip non disponible</span>
+                    {% endif %}
+                {% else %}
+                    <span class="not-available">Non accepté</span>
+                {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+   
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript pour le bouton de retour -->
+    <script>
+        document.getElementById('btn-back').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

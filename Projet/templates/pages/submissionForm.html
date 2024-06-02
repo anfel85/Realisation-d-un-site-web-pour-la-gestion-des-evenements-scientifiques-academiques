@@ -1,0 +1,82 @@
+{% extends 'pages/Submission.html' %}
+
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data" id="submission-form">
+        {% csrf_token %}
+        {{ form_soum.as_p }}
+        <h2>Ajouter des coauteurs</h2>
+        <div id="coauteurs-container">
+            <!-- Utilisez un identifiant unique pour chaque champ de coauteur -->
+            <div>
+                <input type="text" placeholder="Prénom du co-auteur" id="prenom-coauteur">
+                <input type="text" placeholder="Nom du co-auteur" id="nom-coauteur">
+                <input type="email" placeholder="Email du co-auteur" id="email-coauteur">
+            </div>
+        </div>
+        <button type="button" id="ajouter-coauteur">Ajouter un co-auteur</button>
+        <button type="submit" class="submit-button">Soumettre</button>
+    </form>
+
+    <!-- Conteneur du tableau des coauteurs -->
+    <div id="tableau-coauteurs">
+        <table id="coauteurs-table">
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les coauteurs seront ajoutés ici -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ajouterCoauteurBtn = document.getElementById('ajouter-coauteur');
+            var coauteursTableBody = document.getElementById('coauteurs-table').getElementsByTagName('tbody')[0];
+            var coauteurs = []; // Pour stocker les informations des co-auteurs
+
+            ajouterCoauteurBtn.addEventListener('click', function () {
+                var prenomInput = document.getElementById('prenom-coauteur');
+                var nomInput = document.getElementById('nom-coauteur');
+                var emailInput = document.getElementById('email-coauteur');
+                var prenom = prenomInput.value.trim();
+                var nom = nomInput.value.trim();
+                var email = emailInput.value.trim();
+
+                if (prenom === '' || nom === '' || email === '') {
+                    alert("Veuillez entrer le prénom, le nom et l'adresse e-mail pour le co-auteur.");
+                    return;
+                }
+
+                ajouterCoauteurAuTableau(prenom, nom, email);
+                coauteurs.push({ prenom: prenom, nom: nom, email: email }); // Ajouter les infos du co-auteur à la liste
+                prenomInput.value = ''; // Réinitialiser les champs après l'ajout
+                nomInput.value = '';
+                emailInput.value = '';
+            });
+
+            function ajouterCoauteurAuTableau(prenom, nom, email) {
+                var newRow = coauteursTableBody.insertRow();
+                var prenomCell = newRow.insertCell();
+                var nomCell = newRow.insertCell();
+                var emailCell = newRow.insertCell();
+                prenomCell.appendChild(document.createTextNode(prenom));
+                nomCell.appendChild(document.createTextNode(nom));
+                emailCell.appendChild(document.createTextNode(email));
+            }
+
+            // Envoyer les informations des co-auteurs au backend lorsque le formulaire est soumis
+            document.getElementById('submission-form').addEventListener('submit', function () {
+                var coauteursInput = document.createElement('input');
+                coauteursInput.setAttribute('type', 'hidden');
+                coauteursInput.setAttribute('name', 'coauteurs');
+                coauteursInput.setAttribute('value', JSON.stringify(coauteurs));
+                this.appendChild(coauteursInput);
+            });
+        });
+    </script>
+{% endblock %}

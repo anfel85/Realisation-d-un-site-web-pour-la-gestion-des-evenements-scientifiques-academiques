@@ -1,0 +1,156 @@
+
+*{
+    font-family: "Judson";
+    box-sizing: border-box;
+}
+body {
+   
+    overflow: hidden;
+}
+
+h2{
+    font-size: 2.1rem;
+    letter-spacing: 0.12rem;
+    color: #010157;
+    position: absolute;
+   left:90px;
+    top: 30px;
+}
+.container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 190px;
+}
+.image{
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    right:120px;
+    top:50px;
+}
+form{
+    margin-top: 30px;
+}
+form .field{
+    height: 45px;
+    width: 180%;
+    margin-top: 20px ;
+}
+.field input,
+.field button,select{
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px ;
+    font-weight: 400;
+    border-radius: 10px;
+}
+.field button{
+    background-color: #010157;
+    color: #fdf2e9;
+}
+.field input,
+select{
+    outline: none;
+    padding: 0 15px;
+    border: 1px solid #242323;
+    background: transparent;
+}
+.field input::placeholder {
+    color: black; 
+}
+.field input:focus{
+    border-color: #4b4a4a;
+}
+.field.input-field select { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position: right 0.5em center; 
+    cursor: pointer;
+    transition: 0.25s all ease;
+  }
+  
+  .field.input-field select:hover {  
+    background-color: transparent; 
+  }
+  
+  .field.input-field select::after {  
+    content: '\25BC';  
+    position: absolute;
+    top: 50%;
+    right: 0.5em;
+    transform: translateY(-50%); 
+    color: #fdf2e9;      
+    transition: 0.25s all ease;
+  }
+  
+  .field.input-field select:focus {  
+    border-color: #4b4a4a; 
+  }
+  
+  .field.input-field select option {
+    color: #fdf2e9;        
+    background-color: #010157; 
+    border-radius: 80px;   
+    transition: 0.25s all ease;
+  }
+  
+  
+
+  @media screen and (max-width:1126px){
+      
+       .image{
+        height: 300px;
+        width: 300px;
+        position: absolute;
+        right: 120px;
+       }
+
+  }
+  @media screen and (max-width:1040px){
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       }
+    .image{
+     position: absolute;
+     right: 190px;
+    }
+    form{
+        margin-top: 350px;
+    }
+
+}
+@media screen and (max-width:706px) {
+    .container{
+        justify-content: flex-start;
+       margin-left: 120px;
+    }
+    .image{
+        margin-left: 10px;
+    }
+    form{
+        padding: 15px 10px;
+        margin-top: 400px;
+    }
+    form .field{
+        width: 140%;
+       
+    }
+}
+@media screen and (max-width:400px) {
+    .image{
+        position: absolute;
+        margin-left: 30px;
+    }
+}

@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+* {
+  font-family: "Judson";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --blue: #010157;
+  --beige: #fdf2e9;
+  --lightBlue: #669bbc;
+  --red: #920b0b;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--beige);
+}
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.navigation {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 30px;
+}
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.navigation ul li:last-child {
+  margin-top: 320px;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--beige);
+}
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--beige);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--red);
+}
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon .material-symbols-outlined {
+  font-size: 1.75rem;
+}
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--beige);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--beige);
+  pointer-events: none;
+}
+.main {
+  position: absolute;
+  width: calc(100% - 250px);
+  left: 250px;
+  min-height: 100vh;
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  padding: 0 10px;
+}
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.toggle .material-symbols-outlined {
+  font-size: 2.5rem;
+  color: var(--blue);
+}
+/*********************************************************/
+.cardbox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+.cardbox .card {
+  text-decoration: none;
+  position: relative;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(213, 198, 185, 0.9);
+}
+
+.cardbox .card .cardname {
+  position: relative;
+  font-weight: 500;
+  font-size: 1.9rem;
+  color: var(--blue);
+}
+.cardbox .card .numbers {
+  color: var(--red);
+  font-size: 1rem;
+  margin-top: 5px;
+}
+.cardbox .card .iconBx .material-symbols-outlined {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 3rem;
+  color: var(--red);
+}
+.cardbox .card:hover {
+  background: #eadfd7;
+}
+/***************************************/
+.container_form{
+ padding: 5px;
+}
+.form {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 0.5fr 2fr 0.5fr  0.5fr 1fr 0.5fr;
+    grid-gap: 10px;
+    padding: 0 100px 0 50px; 
+    margin-top: 50px;
+    width: calc(100% - 20px);
+}
+label{
+    font-size: 18px;
+}
+.input {
+    width: 100%;
+    border: 1px solid #C4C4C4; 
+    border-radius: 5px;
+    background-color: transparent; 
+    padding: 8px; 
+}
+
+.commentaire-label {
+    display: block; 
+    margin-bottom: 5px; 
+}
+#commentaire{
+    height: 300px;
+}
+.rate{
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  grid-gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.star{
+  display: flex;
+  font-size: 3rem;
+  color: #ff9800;
+  background-color: unset;
+  border: none;
+  transition: 0.5s;
+}
+.star:hover{
+  cursor: pointer;
+}
+.star_rating{
+  display: flex;
+  user-select: none;
+}
+
+.star2{
+  font-size: 3rem;
+  color: #ff9800;
+  background-color: unset;
+  border: none;
+  transition: 0.5s;
+}
+.star2:hover{
+  cursor: pointer;
+}
+#commentaire_confidentiel{
+  height: 100px;
+}
+.bouton{
+  text-align: center;
+}
+.evaluer{
+  background-color: var(--blue);
+  color: var(--beige);
+  border: 2px;
+  border-radius: 10rem;
+  width: 50%;
+  padding: 0.7rem 2.5rem;
+  margin: 0 auto;
+  font-family: "Judson";
+  font-size: 100%;
+  transition: background 0.5s;
+  transition: scale 0.2 ease;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardbox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form {
+    padding: 0 50px 0 30px; 
+}
+}
+
+@media (max-width: 480px) {
+  .cardbox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .form {
+    padding: 0 20px 0 20px; 
+}
+}
+/*********************************enchere***********************************/
+
+.tab_encheres{
+  width: 100%;
+  text-align: center; 
+
+}
+#tableauEncheres{
+  border-collapse: collapse; 
+  width: 80%;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 15);
+  margin: 50px auto;
+    border: 1px solid #C4C4C4;
+}
+#tableauEncheres thead tr{
+  background-color: var(--blue);
+  opacity: 0.8;
+  color: white;
+}
+#tableauEncheres th, td{
+  padding: 15px 20px;
+}
+#tableauEncheres tbody  tr,td,th{
+  
+  border: 1px solid #ddd;
+}
+#tableauEncheres tbody td{
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; 
+}
+#tableauEncheres select{
+  background-color: transparent;
+  border: none;
+  padding-right: 60px;
+}
+
+#conf option,
+#ench option {
+  background-color: rgba(1, 1, 87, 0.8); 
+  color: #ffffff; 
+  font-weight: bold; 
+  font-size: 1rem;
+  padding: 30px; 
+}
+
+
+.modal.fade{
+  width: 30%;
+  background-color: #f1eded;
+}

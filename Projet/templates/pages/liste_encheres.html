@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des enchères</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --blue: #010157;
+            --beige: #fdf2e9;
+            --dark-border: #020230;
+        }
+
+        body {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+            font-family: 'Judson', serif;
+        }
+        .header {
+            background-color: #010157; /* Bleu nuit */
+            color: #fdf2e9; /* Beige */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .btn-back:hover {
+            color: rgba(161, 159, 159, 0.7);
+        }
+
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--dark-border);
+        }
+
+        .table thead th {
+            background-color: var(--blue);
+            color: var(--beige);
+            border: 1px solid var(--dark-border);
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(1, 1, 87, 0.1);
+        }
+
+        .btn-custom {
+            background-color: var(--blue);
+            color: var(--beige);
+        }
+
+        .btn-custom:hover {
+            background-color: var(--blue);
+            color: var(--beige);
+            opacity: 0.8;
+        }
+
+        /* Styles pour le contenu du modal */
+        .modal-header, .modal-footer {
+            background-color: var(--beige);
+            color: var(--blue);
+        }
+
+        .modal-body {
+            background-color: var(--beige);
+            color: var(--blue);
+        }
+
+        .modal-header .close {
+            color: var(--blue);
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: var(--blue);
+            color: var(--beige);
+            border: none;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: var(--blue);
+            color: var(--beige);
+            opacity: 0.8;
+        }
+        .modal-header {
+            background-color: #fdf2e9; /* Bleu */
+            color: #010157; /* Beige */
+            border-bottom: none;
+        }
+        
+        .modal-content {
+            background-color: #fdf2e9; /* Beige */
+            color: #010157; /* Bleu */
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-footer {
+            background-color: #fdf2e9; /* Bleu */
+            border-top: none;
+            justify-content: right;
+        }
+        .close {
+            color: #010157; /* Beige */
+            opacity: 1;
+        }
+        .close:hover {
+            color:#0909af;
+        }
+        .card-header{
+            background-color: #010157; /* Beige */
+            color: #fdf2e9;
+        }
+        .card-body{
+            background-color: #fdf2e9; /* Beige */
+            color: #010157;
+        }
+        #fermer{
+            background-color: #010157; /* Beige */
+            color: #fdf2e9; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="btn-back" class="btn-back"><i class="fas fa-arrow-left"></i></button>
+        <h1> Enchères </h1>
+    </div>
+    <div class="container mt-4">
+       
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Titre de la soumission</th>
+                        <th scope="col">Informations </th>
+                        <th scope="col">Enchères</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for soumission_id, soumission_data in encheres_par_soumission.items %}
+                    <tr>
+                        <td>{{ soumission_data.titre }}</td>
+                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalInfos{{ soumission.id }}">Infos</button></td>
+                        <td>
+                            <button class="btn btn-custom" data-toggle="modal" data-target="#enchereModal{{ soumission_id }}">
+                                Voir les enchères
+                            </button>
+                            <div class="modal fade" id="modalInfos{{ soumission.id }}" tabindex="-1" role="dialog" aria-labelledby="modalInfosLabel{{ soumission.id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card card-custom">
+                                                <div class="card-header">
+                                                    Titre: {{ soumission_data.titre }}
+                                                </div>
+                                                <div class="card-body">
+                                                    <p><strong>Résumé :</strong><br> {{ soumission_data.resume }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="fermer" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="enchereModal{{ soumission_id }}" tabindex="-1" role="dialog" aria-labelledby="enchereModalLabel{{ soumission_id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="enchereModalLabel{{ soumission_id }}">Enchères pour {{ soumission_data.titre }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Évaluateur</th>
+                                                        <th scope="col">Enthousiasme</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for enchere in soumission_data.encheres %}
+                                                    <tr>
+                                                        <td>{{ enchere.user.nom }} {{ enchere.user.prenom }}</td>
+                                                        <td>{{ enchere.enthousiasme }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script>
+        document.getElementById('btn-back').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

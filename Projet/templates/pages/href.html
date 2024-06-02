@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+
+    <style>
+        body {
+            background-color: #fdf2e9; /* Couleur de fond beige */
+        }
+        .header {
+            background-color: transparent;
+            color: #010157;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #010157;
+            margin: 0;
+            font-weight: 700;
+            font-size: 35px;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            border: none;
+            color: #010157;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            color: rgba(8, 0, 120, 0.7);
+        }
+
+        .links {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+
+        a.square-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px; /* Hauteur des carrés */
+            background-color: #010157;
+            border: 2px solid #fdf2e9; /* Bordure intérieure */
+            outline: 2px solid #010157;/* Couleur de fond bleue */
+            color: white; /* Couleur du texte en blanc */
+            text-align: center; /* Centre le texte */
+            text-decoration: none; /* Supprime les soulignements de lien */
+            border-radius: 10px; /* Angles arrondis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+            transition: all 0.3s ease; /* Animation de transition */
+            font-size: 1.2rem; /* Taille du texte */
+            padding: 10px; /* Padding interne */
+        }
+        
+        a.square-link:hover {
+            background-color: #0056B3; /* Couleur de fond bleue foncée au survol */
+            transform: translateY(-5px); /* Effet de flottement au survol */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+        }
+        a.square-link img {
+            max-width: 80%;
+            max-height: 80px; /* Limiter la hauteur des images */
+            height: auto;
+            margin-bottom: 10px;
+            object-fit: contain; /* Ajuster l'image tout en conservant ses proportions */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../../commun" class="btn-back"><i class="fas fa-arrow-left"></i> </a> <!-- Bouton de retour avec lien -->
+            <h1>{{ evenement_obj }}</h1>
+        </div>
+        
+        <div class="links">
+            <a href="{% url 'modifier_Accueil_Organisateur' my_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/event.svg' %}" alt=""> 
+                <span>Modifier Evénement</span>
+            </a>
+            <a href="{% url 'soumissions_par_evenement' evenement_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/submission.svg' %}" alt=""> 
+                <span>Consulter Soumission</span>
+            </a>
+            <a href="{% url 'liste_evaluation_org' evenement_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/review.svg' %}" alt=""> 
+                <span>Evaluations</span>
+            </a>
+            <a href="{% url 'liste_encheres' evenement_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/encheres.svg' %}" alt=""> 
+                <span>Enchères</span>
+            </a>
+            <a href="{% url 'invitation_view' evenement_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/addMember.svg' %}" alt=""> 
+                <span>Ajouter un membre</span>
+            </a>
+            <a href="{% url 'statistics' evenement_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/addMember.svg' %}" alt=""> 
+                <span>Statistiques</span>
+            </a>
+            <a href="{% url 'liste_speakers' evenement_id=evenement_obj.id %}" class="square-link">
+                <img src="{% static 'image/addMember.svg' %}" alt=""> 
+                <span>Liste des Orateurs</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
