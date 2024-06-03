@@ -1,22 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link
-      href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    >
-    <link
-      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    >
+        href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <title>welcome</title>
 </head>
+
 <body>
     <section class="home" id="acceuil">
         <nav>
@@ -33,22 +32,109 @@
                 <span></span>
             </button>
         </nav>
-<div class="content">
-    <div class="content-text">
-        <h1>Gerez votre événement comme un pro</h1>
-        <p>
-          Bienvenue à la plateforme de gestion d'événements<br />
-          où vous apprendrez , partagerez et vous connecterez <br />avec des
-          experts de l'industrie.<br />
-          Inscrivez-vous dès maintenant pour ne rien manquer !
-        </p>
-        <a href="{% url 'connexion' %}" class="btn">Acceder</a>
-    </div>
-    <div class="container-images">
-        <img src="{% static 'image/Onboarding-cuate.svg' %}" alt="img" class="pic">
-    </div>
-</div>
-</section>
-<script src="{%  static 'js/script.js'%}"></script>
+        <div class="content">
+            <div class="content-text">
+                <h1>Gerez votre événement comme un pro</h1>
+                <p>
+                    Bienvenue à la plateforme de gestion d'événements<br />
+                    où vous apprendrez , partagerez et vous connecterez <br />avec des
+                    experts de l'industrie.<br />
+                    Inscrivez-vous dès maintenant pour ne rien manquer !
+                </p>
+                <a href="{% url 'connexion' %}" class="btn">Acceder</a>
+            </div>
+            <div class="container-images">
+                <img src="{% static 'image/Onboarding-cuate.svg' %}" alt="img" class="pic">
+            </div>
+        </div>
+    </section>
+    <section class="aide" id="aide">
+        <h1>Besoin d'aide ?</h1>
+        <p>Nous sommes là pour vous accompagner à chaque étape de l'organisation de votre événement scientifique.
+            Retrouvez ici toutes les informations et ressources nécessaires pour utiliser notre plateforme de manière
+            optimale.</p>
+
+        <h2>Comment Utiliser Notre Plateforme</h2>
+        <div class="container">
+            <div class="sous-container">
+                <h3>Créer un Compte</h3>
+                <p>Accédez à la page d'inscription, remplissez les informations requises et validez votre compte via
+                    l'email de confirmation.</p>
+            </div>
+            <div class="sous-container">
+                <h3>Se Connecter</h3>
+                <p>Une fois votre compte créé, connectez-vous en utilisant votre adresse email et votre mot de
+                    passe.</p>
+            </div>
+            <div class="sous-container">
+                <h3>Guide de Création d'Événements</h3>
+                <p>Créez un nouvel événement scientifique en définissant les informations clés telles que le titre,
+                    la description, la date et le lieu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="soumission">
+        <h2>Gestion des Soumissions</h2>
+        <div class="container">
+            <div class="sous-container">
+
+                <h3>Soumettre un Document</h3>
+                <p>Pour soumettre un article, connectez-vous à votre compte, accédez à la liste des événements. Vous
+                    pouvez effectuer une recherche ou filtrer votre recherche. Une fois l'événement pour lequel vous
+                    voulez soumettre trouvé, vous pouvez créer une soumission.</p>
+            </div>
+            <div class="sous-container">
+
+                <h3>Enchères sur des Soumissions</h3>
+                <p>En tant qu'évaluateur, vous pouvez enchérir sur différentes soumissions en accédant à la liste
+                    des articles. Choisissez une des options (Je peux, Peut-être, Je ne peux pas, Conflit).</p>
+            </div>
+            <div class="sous-container">
+
+                <h3>Évaluation des Soumissions</h3>
+                <p>Si vous êtes évaluateur, consultez la liste des documents à évaluer, téléchargez les fichiers et
+                    soumettez vos évaluations via notre interface dédiée. Utilisez les outils fournis pour noter et
+                    commenter chaque soumission.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Nos Services</h2>
+        <ul>
+            <li><strong>Création et Gestion d'Événements</strong>
+                <ul>
+                    <li>Création d'Événements</li>
+                    <li>Invitation des Membres du Comité</li>
+                    <li>Participation avec Différents Rôles</li>
+                </ul>
+            </li>
+            <li><strong>Gestion des Soumissions et Évaluations</strong>
+                <ul>
+                    <li>Soumissions de Documents</li>
+                    <li>Gestion des Évaluations et Conflits</li>
+                    <li>Gestion des Éditeurs et Orateurs</li>
+                </ul>
+            </li>
+            <li><strong>Coordination des Intervenants</strong>
+                <ul>
+                    <li>Consultation des Statistiques</li>
+                </ul>
+            </li>
+            <li><strong>Soumission d'Articles à Différents Événements</strong>
+                <ul>
+                    <li>Plateforme Intégrée</li>
+                </ul>
+            </li>
+            <li><strong>Inscription et Gestion des Participants</strong>
+                <ul>
+                    <li>Inscription en Ligne</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <script src="{%  static 'js/script.js'%}"></script>
 </body>
+
 </html>

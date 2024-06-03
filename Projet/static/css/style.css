@@ -147,8 +147,31 @@ p{
    background-color:var(--bgColor-1);
 }
 
-
-
+.aide {
+    background-color: #ffffff;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .container{
+      display:flex;
+      padding:20px;
+      justify-content:center;
+  }
+  
+  .sous-container{
+      padding:20px;
+      max-width:400px;
+  }
+  
+  .sous-container h3{
+      font-size:24px;
+  }
+#soumission{
+    background-color: #ffffff;
+    padding: 50px 0;
+    text-align: center;
+}
 @media screen and (max-width: 759px) {
     :root{
         --padding: 1.5rem;
