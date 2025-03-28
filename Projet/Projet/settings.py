@@ -23,18 +23,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'documents')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x#da0=rgt67b1h5(&9zqczbr+x_yyllr4hgsw)6&h)@kae&36u'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 #Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'anfelmami6@gmail.com'
-EMAIL_HOST_PASSWORD = 'tbpekjsuztspxcqd'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 
+EMAIL_USE_TLS = 
 ALLOWED_HOSTS = []
 
 
@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'Projet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mabdd',
+        'NAME': '',
         'HOST':'localhost',
-        'PORT':'3306',
+        'PORT':'',
         'USER':'root',
-        'PASSWORD':'P@ssword123',
+        'PASSWORD':'',
     }
 }
 
